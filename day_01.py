@@ -1,8 +1,12 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 url = 'https://adventofcode.com/2023/day/1/input'
 cookies = {
-    'session': '53616c7465645f5f8094fa84ce58871afc51cd02ef5db74795aeeb63d04dbcf458db2b9a7f663d4c9b9a4334db03cc9e4d0ba4234b1f4d5fbf4173ebab73930d',
+    'session': os.getenv('SESSION'),
         }
 response = requests.get(url, cookies=cookies)
 
@@ -40,12 +44,12 @@ for line in data_arr:
                     if key == number_str:
                         if first_num == 0:
                             first_num = str(num_words[number_str])
-                            number_str = ''
+                            number_str = char
                         else:
                             second_num = str(num_words[number_str])
-                            number_str = ''
+                            number_str = char
             if matches == 0:
-                number_str = ''
+                number_str = char
         if second_num == 0:
             second_num = first_num
 
